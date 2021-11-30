@@ -25,15 +25,19 @@ const functionName = () => {
 meghívása: functionName();
 */
 
-const input = () => {
+const input = (type) => {
    return `
-        <input type="text">
+        <input type="${type}">
     `
 }
 
 const form = `
     <form id="form">
         ${ input("text") }
+        ${ input("file") }
+        ${ input("email") }
+        ${ input("radio") }
+        ${ input("checkbox") }
     </form>
 `;
 
