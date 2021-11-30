@@ -25,19 +25,22 @@ const functionName = () => {
 meghívása: functionName();
 */
 
-const input = (type) => {
+const input = (type, name, label) => {
    return `
-        <input type="${type}">
+        <div>
+            <label>${label}</label>
+            <input type="${type}" name="${name}">
+        </div>
     `
 }
 
 const form = `
     <form id="form">
-        ${ input("text") }
-        ${ input("file") }
-        ${ input("email") }
-        ${ input("radio") }
-        ${ input("checkbox") }
+        ${ input("text", "firstName", "Keresztneved") }
+        ${ input("file", "profilePicture", "Profilképed") }
+        ${ input("email", "personalEmail", "Email címed") }
+        ${ input("radio", "newsLetter", "Szeretnél-e hírlevelet kapni?") }
+        ${ input("checkbox", "terms", "Elfogadod-e a felhasználási feltételeket?") }
     </form>
 `;
 
