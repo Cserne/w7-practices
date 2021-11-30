@@ -1,26 +1,39 @@
 /*
 Függvények létrehozásának 3 módja (amit változóban hozok létre, az csak miután elkészült, érhető el, a "sima" előbb is elérhető):
 
-function functionName() {
-
+function functionName(parameter) {
+    parameter === "argumentum as a string";
 }
 
-const functionName = function () {
+meghívása: functionName("argumentum as a string");
 
+/////////////////////////////////////////////////////////
+const argument = "argumentum as a string";
+
+const functionName = function (parameter) {
+    parameter === "argumentum as a string"
 }
+
+meghívása: functionName(argumentum);
+
+/////////////////////////////////////////////////////////
 
 const functionName = () => {
 
 }
+
+meghívása: functionName();
 */
 
-const input = `
-    <input type="text">
-`;
+const input = () => {
+   return `
+        <input type="text">
+    `
+}
 
 const form = `
     <form id="form">
-        ${input("text")}
+        ${ input("text") }
     </form>
 `;
 
