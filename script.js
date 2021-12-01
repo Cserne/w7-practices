@@ -34,13 +34,30 @@ const inputElement = (type, name, label) => {
     `
 };
 
+const selectElement = (type, name, label, selectOptions) => {
+    let optionElements = "";
+    for (const option of selectOptions) {
+        optionElements += `<option>${option}</option>`;
+    }
+    return `
+         <div>
+             <label>${label}</label>
+             <${type} name="${name}">
+                ${optionElements}
+             </${type}>
+         </div>
+     `
+ };
+ 
+
 const formElement = `
     <form id="form">
         ${ inputElement("text", "firstName", "Keresztneved") }
         ${ inputElement("file", "profilePicture", "Profilképed") }
         ${ inputElement("email", "personalEmail", "Email címed") }
-        ${ inputElement("radio", "newsLetter", "Szeretnél-e hírlevelet kapni?") }
+        ${ inputElement("checkbox", "newsLetter", "Szeretnél-e hírlevelet kapni?") }
         ${ inputElement("checkbox", "terms", "Elfogadod-e a felhasználási feltételeket?") }
+        ${ selectElement("select", "where", "Hol hallottál rólunk?", ["internetről", "ismerőstől", "egyéb"]) }
         <button>Ok</button>
     </form>
 `;
@@ -52,8 +69,14 @@ const formSubmit = (event) => {
 }
 
 const inputEvent = (event) => {
-    console.log(event.target.value); //csak az input mezőknek van value-ja
+    //console.log(event.target.value); //csak az input mezőknek van value-ja
+    console.log(event.target.name);
+    console.log(event);
+    const fName = document.querySelector(`input[name="firstName"]`);
+    console.log(fName);
+    if (event.target.getAttribute("name") === "firstName") {
     document.getElementById("inputValueContent").innerHTML = event.target.value;
+    }
 }
 
 function loadEvent() {
