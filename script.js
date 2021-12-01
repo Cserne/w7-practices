@@ -79,10 +79,12 @@ const formSubmit = (event) => {
 
 const inputEvent = (event) => {
     //console.log(event.target.value); //csak az input mezőknek van value-ja
-    console.log(event.target.name);
-    console.log(event);
+    //console.log(event.target.name);
+    //console.log(event);
     const fName = document.querySelector(`input[name="firstName"]`);
-    console.log(fName);
+    const tryForm = fName.closest("#form"); //a legközelebbi olyan parent, aminek az id-ja form
+    console.log(tryForm);
+    //console.log(fName);
     if (event.target.getAttribute("name") === "firstName") {
     document.getElementById("inputValueContent").innerHTML = event.target.value;
     }
