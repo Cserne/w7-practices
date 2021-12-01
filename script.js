@@ -70,8 +70,11 @@ const formElement = `
 
 const formSubmit = (event) => {
     event.preventDefault(); //ez éri el, hogy az alapértelmezett submitje ne fusson le az eseménynek
-    console.log(event);
-    event.target.classList.add("submit"); //a target azért kell, hogy már ne kelljen getElementById-val kiszednem
+    //console.log(event);
+    const et = event.target;
+    et.classList.add("submit"); //a target azért kell, hogy már ne kelljen getElementById-val kiszednem, az event.target a form element
+    let etValue = et.querySelector(`select[name="where"]`).value;
+    console.log(etValue);
 }
 
 const inputEvent = (event) => {
