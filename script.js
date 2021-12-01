@@ -37,7 +37,9 @@ const inputElement = (type, name, label) => {
 const selectElement = (type, name, label, selectOptions) => {
     let optionElements = "";
     for (const option of selectOptions) {
-        optionElements += `<option>${option}</option>`;
+        optionElements += `
+            <option>${option}</option>
+        `;
     }
     return `
          <div>
@@ -47,8 +49,12 @@ const selectElement = (type, name, label, selectOptions) => {
              </${type}>
          </div>
      `
- };
+};
  
+/*
+const formElement = '<form id="form">' + inputElement("text", "firstName", "Keresztneved") + inputElement("file", "profilePicture", "Profilképed") + inputElement("email", "personalEmail", "Email címed") + inputElement("checkbox", "newsLetter", "Szeretnél-e hírlevelet kapni?") +  inputElement("checkbox", "terms", "Elfogadod-e a felhasználási feltételeket?") +  selectElement("select", "where", "Hol hallottál rólunk?", ["internetről", "ismerőstől", "egyéb"]) + ' <button>Ok</button>' + '</form>'
+*/
+
 
 const formElement = `
     <form id="form">
@@ -65,7 +71,7 @@ const formElement = `
 const formSubmit = (event) => {
     event.preventDefault(); //ez éri el, hogy az alapértelmezett submitje ne fusson le az eseménynek
     console.log(event);
-    event.target.classList.add("submit"); //a target azért kell, hogy már ne kelljen getElementBYId-val kiszednem
+    event.target.classList.add("submit"); //a target azért kell, hogy már ne kelljen getElementById-val kiszednem
 }
 
 const inputEvent = (event) => {
