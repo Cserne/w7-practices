@@ -25,11 +25,12 @@ const functionName = () => {
 meghívása: functionName();
 */
 
-const inputElement = (type, name, label) => {
-   return `
+const inputElement = (type, name, label, req = "") => {
+   console.log(req);
+    return `
         <div>
             <label>${label}</label>
-            <input type="${type}" name="${name}">
+            <input type="${type}" name="${name}" ${req}>
         </div>
     `
 };
@@ -55,18 +56,93 @@ const selectElement = (type, name, label, selectOptions) => {
 const formElement = '<form id="form">' + inputElement("text", "firstName", "Keresztneved") + inputElement("file", "profilePicture", "Profilképed") + inputElement("email", "personalEmail", "Email címed") + inputElement("checkbox", "newsLetter", "Szeretnél-e hírlevelet kapni?") +  inputElement("checkbox", "terms", "Elfogadod-e a felhasználási feltételeket?") +  selectElement("select", "where", "Hol hallottál rólunk?", ["internetről", "ismerőstől", "egyéb"]) + ' <button>Ok</button>' + '</form>'
 */
 
+/*
+const nameData = { //Ezeknek semmi köze a paraméterekhez, véletlen, hogy ugyanúgy hívják őket!!!
+    type: "text",
+    name: "firstName",
+    label:"Keresztneved"
+}
+*/
 
+const anotherFormFields = [
+    {
+        type: "text",
+        name: "street",
+        label: "Közterület neve"
+    },
+    {
+        type: "text",
+        name: "houseNumber",
+        label: "Házszám"
+    },
+    {
+        type: "number",
+        name: "zipCode",
+        label: "Irányítószám"
+    },
+    {
+        type: "text",
+        name: "city",
+        label: "Település neve"
+    }
+]
+
+const formFields = [
+    {
+        type: "text",
+        name: "firstName",
+        label:"Keresztneved"
+    },
+    {
+        type: "file",
+        name: "profilePicture",
+        label:"Profilképed"
+    },
+    {
+        type: "email",
+        name: "personalEmail",
+        label:"Email címed",
+        required: "required"
+    },
+    {
+        type: "checkbox",
+        name: "newsLetter",
+        label:"Szeretnél-e hírlevelet kapni?"
+    },
+    {
+        type: "checkbox",
+        name: "terms",
+        label:"Elfogadod-e a felhasználási feltételeket?"
+    }
+]
+
+const formElement = (ffs, id) => {
+    let toForm = "";
+    for (const ff of ffs) {
+        toForm += inputElement(ff.type, ff.name, ff.label, ff.required)
+    }
+    return `
+    <form id="${id}">
+        ${toForm}
+        ${ selectElement("select", "where", "Hol hallottál rólunk?", ["internetről", "ismerőstől", "egyéb"]) }
+        <button>Ok</button>
+    </form>
+`
+}
+
+/*
 const formElement = `
     <form id="form">
-        ${ inputElement("text", "firstName", "Keresztneved") }
+        ${ inputElement(nameData.type, nameData.name, nameData.label) }
         ${ inputElement("file", "profilePicture", "Profilképed") }
-        ${ inputElement("email", "personalEmail", "Email címed") }
+        ${ inputElement("email", "personalEmail", "Email címed", "required") }
         ${ inputElement("checkbox", "newsLetter", "Szeretnél-e hírlevelet kapni?") }
         ${ inputElement("checkbox", "terms", "Elfogadod-e a felhasználási feltételeket?") }
         ${ selectElement("select", "where", "Hol hallottál rólunk?", ["internetről", "ismerőstől", "egyéb"]) }
         <button>Ok</button>
     </form>
 `;
+*/
 
 const formSubmit = (event) => {
     event.preventDefault(); //ez éri el, hogy az alapértelmezett submitje ne fusson le az eseménynek
@@ -92,7 +168,8 @@ const inputEvent = (event) => {
 
 function loadEvent() {
     const root = document.getElementById("root");
-    root.insertAdjacentHTML("beforeend", formElement);
+    root.insertAdjacentHTML("beforeend", formElement(formFields, "form"));
+    root.insertAdjacentHTML("beforeend", formElement(anotherFormFields, "form2"));
     root.insertAdjacentHTML("beforeend", `
     <div id="inputValueContent"></div>
     `);

@@ -17,9 +17,12 @@ body {
 }
 
 input {
-    width: 20rem;
-    padding: 6px;
     font-family: 'Poppins', sans-serif;
+    padding: 6px;
+}
+
+input[type=email], [type=text] {
+    width: 80%;
 }
 
 input[type=checkbox] {
@@ -42,7 +45,7 @@ select {
 }
 
 input:focus {
-    background-color: rgb(175, 174, 174);
+    background-color: rgb(214, 214, 214);
 }
 
 label {
